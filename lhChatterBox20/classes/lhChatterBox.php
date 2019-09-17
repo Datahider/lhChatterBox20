@@ -15,12 +15,6 @@ require_once __DIR__ . '/../abstract/lhAbstractChatterBox.php';
 
 class lhChatterBox extends lhAbstractChatterBox {
     
-    public function __construct($session_id) {
-        $this->session = new lhSessionFile($session_id);
-        $this->aiml = new lhAIML();
-        $this->csml = new lhCSML();
-    }
-    
     public function process($text) {
         $this->text = $text;
         $this->session->log(lhSessionFile::$facility_chat, 'IN', $text);
