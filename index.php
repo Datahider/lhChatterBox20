@@ -28,9 +28,6 @@ if (count($not_found_blocks)) {
     print_r($not_found_blocks);
 }
 
-$cb->setAIProvider($ai);
-$cb->setScriptProvider($cs);
-
 $answer = $cb->scriptStart("start");
 echo "$answer[text]\n# ";
 while (true) {

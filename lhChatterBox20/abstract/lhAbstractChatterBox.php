@@ -29,6 +29,8 @@ abstract class lhAbstractChatterBox implements lhChatterBoxInterface {
         if ($aiml) {
             if (!is_a($aiml, 'lhAbstractAIML')) {
                 throw new Exception("lhAbstractChatterBox::__construct needs an lhAbstractAIML child instance or null as it's second argument");
+            } else {
+                $this->aiml = $aiml;
             }
         } else {
             $this->aiml = new lhAIML();
@@ -37,6 +39,8 @@ abstract class lhAbstractChatterBox implements lhChatterBoxInterface {
         if ($csml) {
             if (!is_a($csml, 'lhAbstractCSML')) {
                 throw new Exception("lhAbstractChatterBox::__construct needs an lhAbstractCSML instance or null as it's third argument");
+            } else {
+                $this->csml = $csml;
             }
         } else {
             $this->csml = new lhCSML();
