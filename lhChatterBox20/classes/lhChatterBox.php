@@ -16,6 +16,7 @@ require_once __DIR__ . '/../abstract/lhAbstractChatterBox.php';
 class lhChatterBox extends lhAbstractChatterBox {
     
     public function process($text) {
+        $this->log(__CLASS__.'->'.__FUNCTION__);
         $this->text = $text;
         $this->session->log(lhSessionFile::$facility_chat, 'IN', $text);
         switch ($this->session->get('status', 'script')) {
@@ -33,6 +34,7 @@ class lhChatterBox extends lhAbstractChatterBox {
     }
     
     public function scriptStart($block_name=null) {
+        $this->log(__CLASS__.'->'.__FUNCTION__);
         $this->session->set('status', 'script');
         $this->session->set('script_state', (string)$block_name);
 
@@ -44,6 +46,7 @@ class lhChatterBox extends lhAbstractChatterBox {
     }
     
     private function doScript() {
+        $this->log(__CLASS__.'->'.__FUNCTION__);
         $this->csml->start($this->session->get('script_state', 'start'));
         $xml = $this->csml->getCsml();
         $min_hit_ratio = isset($xml['minhit']) ? $xml['minhit'] : 70;
@@ -71,6 +74,7 @@ class lhChatterBox extends lhAbstractChatterBox {
     }
     
     private function checkCondition($next) {
+        $this->log(__CLASS__.'->'.__FUNCTION__);
         $if = (string)$next['if'];
         if ($if) {
             if ( isset($next['eq']) ) {
@@ -91,6 +95,7 @@ class lhChatterBox extends lhAbstractChatterBox {
 
 
     private function doAiml($stupid=true) {
+        $this->log(__CLASS__.'->'.__FUNCTION__);
         $context = $this->session->get('context', '');
         $tags = $this->session->get('tags', '');
         if (!$tags) $tags = '#ever';
@@ -117,6 +122,7 @@ class lhChatterBox extends lhAbstractChatterBox {
     }
     
     private function answerFromCsmlBlock($block) {
+        $this->log(__CLASS__.'->'.__FUNCTION__);
         $hints = [];
         foreach ($block->hint as $hint) {
             $hints[] = $this->subst((string)$hint);
@@ -138,6 +144,7 @@ class lhChatterBox extends lhAbstractChatterBox {
     }
     
     private function answerFromAimlCategory($category) {
+        $this->log(__CLASS__.'->'.__FUNCTION__);
         $this->setVars($category);
         foreach ($category->template as $template) {
             $templates[] = $template;
@@ -165,6 +172,7 @@ class lhChatterBox extends lhAbstractChatterBox {
 
 
     private function setVars($parent_object) {
+        $this->log(__CLASS__.'->'.__FUNCTION__);
         $this->session->set('context', '');
         $this->session->set('tags', '');
         foreach ($parent_object->var as $var) {
@@ -185,6 +193,7 @@ class lhChatterBox extends lhAbstractChatterBox {
     }
     
     private function subst($text, $obj=null) {
+        $this->log(__CLASS__.'->'.__FUNCTION__);
         if ($obj && $obj->validated) {
             $validated = json_decode((string)$obj->validated, true);
         } else {

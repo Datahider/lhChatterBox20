@@ -13,7 +13,7 @@
  */
 require_once __DIR__ . '/../interface/lhChatterBoxInterface.php';
 
-abstract class lhAbstractChatterBox implements lhChatterBoxInterface {
+abstract class lhAbstractChatterBox extends lhSelfTestingClass implements lhChatterBoxInterface {
     
     protected $session; // Экземпляр класса lhSessionFile для хранения данных сессии
     protected $aiml; // Экземпляр класса lhAIML для доступа к данным AIML
@@ -21,6 +21,7 @@ abstract class lhAbstractChatterBox implements lhChatterBoxInterface {
     protected $text;  // Обрабатываемый текст (реплика пользователя)
     
     public function __construct($session, $aiml=null, $csml=null) {
+        $this->log(__CLASS__.'->'.__FUNCTION__);
         if (!is_a($session, 'lhAbstractSession')) {
             throw new Exception("lhAbstractChatterBox::__construct needs an lhAbstractSession child instance as it's first argument");
         }
@@ -48,10 +49,12 @@ abstract class lhAbstractChatterBox implements lhChatterBoxInterface {
     }
     
     public function setAIProvider($lhaiml_instance) {
+        $this->log(__CLASS__.'->'.__FUNCTION__);
         $this->aiml = $lhaiml_instance;
     }
 
     public function setScriptProvider($lhcsml_instance) {
+        $this->log(__CLASS__.'->'.__FUNCTION__);
         $this->csml = $lhcsml_instance;
     }
 
