@@ -7,6 +7,9 @@ define('LH_MIN_HIT_RATIO_AIML', 80);
 define('LH_MIN_HIT_RATIO_CSML', 50);
 date_default_timezone_set('UTC');
 
+require_once LH_LIB_ROOT . '/lhTestingSuite/classes/lhSelfTestingClass.php';
+require_once LH_LIB_ROOT . '/lhTestingSuite/classes/lhTest.php';
+require_once LH_LIB_ROOT . '/lhTextConv/lhTextConv.php';
 require_once LH_LIB_ROOT . '/lhChatterBoxDataProviders/classes/lhAIML.php';
 require_once LH_LIB_ROOT . '/lhChatterBoxDataProviders/classes/lhCSML.php';
 require_once LH_LIB_ROOT . '/lhChatterBoxDataProviders/classes/lhSessionFile.php';

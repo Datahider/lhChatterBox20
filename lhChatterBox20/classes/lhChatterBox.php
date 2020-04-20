@@ -121,13 +121,18 @@ class lhChatterBox extends lhAbstractChatterBox {
         foreach ($block->hint as $hint) {
             $hints[] = $this->subst((string)$hint);
         }
+        $commands = [];
+        foreach ($block->command as $command) {
+            $commands[] = $this->subst((string)$command);
+        }
         $templates = [];
         foreach ($block->template as $template) {
             $templates[] = (string)$template;
         }
         $answer = [
             'text' => $this->subst($templates[rand(0, count($templates)-1)]),
-            'hints' =>  $hints
+            'hints' =>  $hints, 
+            'commands' => $commands
         ];
         return $answer;
     }
@@ -145,9 +150,15 @@ class lhChatterBox extends lhAbstractChatterBox {
             $hints[] = $this->subst((string)$hint);
         }
         
+        $commands = [];
+        foreach ($selected->command as $command) {
+            $commands[] = $this->subst((string)$command);
+        }
+        
         $answer = [
             'text' => $this->subst($selected->text),
-            'hints' => $hints
+            'hints' => $hints,
+            'commands' => $commands
         ];
         return $answer;
     }
