@@ -182,6 +182,9 @@ class lhChatterBox extends lhAbstractChatterBox {
         $this->log('$parent_object='. print_r($parent_object, true), 15);
         $this->session->set('context', '');
         $this->session->set('tags', '');
+        if (!isset($parent_object->var)) {
+            return;
+        }
         foreach ($parent_object->var as $var) {
             $value = (string)$var;
             if (($var['name'] == 'needhelp') && $this->session->get('proxy_to')) {
