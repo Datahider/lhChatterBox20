@@ -57,6 +57,10 @@ abstract class lhAbstractChatterBox extends lhSelfTestingClass implements lhChat
         $this->log(__CLASS__.'->'.__FUNCTION__);
         $this->csml = $lhcsml_instance;
     }
+    
+    public function session() {
+        return $this->session;
+    }
 
     
 }
