@@ -152,6 +152,10 @@ class lhChatterBox extends lhAbstractChatterBox {
         $this->log(__CLASS__.'->'.__FUNCTION__);
         $this->log('$category='. print_r($category, true), 15);
         $this->setVars($category);
+        
+        if (!isset($category->template)) {
+            return [];
+        }
         foreach ($category->template as $template) {
             $templates[] = $template;
         }
