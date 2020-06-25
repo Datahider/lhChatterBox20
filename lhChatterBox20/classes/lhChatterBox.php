@@ -30,7 +30,9 @@ class lhChatterBox extends lhAbstractChatterBox {
             default:
                 $answer = false;
         }
-        $this->session->log(lhSessionFile::$facility_chat, 'OUT', $answer['text']);
+        if ($answer !== false) {
+            $this->session->log(lhSessionFile::$facility_chat, 'OUT', $answer['text']);
+        }
         return $answer;
     }
     
@@ -154,7 +156,7 @@ class lhChatterBox extends lhAbstractChatterBox {
         $this->setVars($category);
         
         if (!isset($category->template)) {
-            return [];
+            return false;
         }
         foreach ($category->template as $template) {
             $templates[] = $template;
@@ -162,14 +164,19 @@ class lhChatterBox extends lhAbstractChatterBox {
         $rand = rand(0, count($templates)-1);
         $selected = $templates[$rand];
         $this->setVars($selected);
+
         $hints = [];
-        foreach ($selected->hint as $hint) {
-            $hints[] = $this->subst((string)$hint);
+        if (isset($selected->hint)) {
+            foreach ($selected->hint as $hint) {
+                $hints[] = $this->subst((string)$hint);
+            }
         }
         
         $commands = [];
-        foreach ($selected->command as $command) {
-            $commands[] = $this->subst((string)$command);
+        if (isset($selected->command)) {
+            foreach ($selected->command as $command) {
+                $commands[] = $this->subst((string)$command);
+            }
         }
         
         $answer = [
