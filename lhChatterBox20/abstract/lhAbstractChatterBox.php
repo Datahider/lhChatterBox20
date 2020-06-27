@@ -62,5 +62,19 @@ abstract class lhAbstractChatterBox extends lhSelfTestingClass implements lhChat
         return $this->session;
     }
 
+    public function aiml($param=null) {
+        $result = $this->aiml;
+        if ($param !== null) {
+            $this->setAIProvider($param);
+        }
+        return $result;
+    }
     
+    public function csml($param=null) {
+        $result = $this->csml;
+        if ($param !== null) {
+            $this->setScriptProvider($param);
+        }
+        return $result;
+    }
 }
