@@ -119,7 +119,7 @@ class lhChatterBox extends lhAbstractChatterBox {
         if (count($matches)) {
             $category = array_shift($matches)[1];
         } elseif ($stupid) { // Если работаем в режиме глупца - вернем ответ на все случаи жизни
-            $matches = $this->aiml->bestMatches('Любая фигня', '#anyway');
+            $matches = $this->aiml->bestMatches('Любая фигня', $tags.' #anyway');
             $category = array_shift($matches)[1];
         } else { // В режиме умного - промолчим - за умного сойдем
             return false;
