@@ -173,6 +173,11 @@ class lhChatterBox extends lhAbstractChatterBox {
         }
         
         $commands = [];
+        if (isset($category->command)) {
+            foreach ($category->command as $command) {
+                $commands[] = $this->subst((string)$command);
+            }
+        }
         if (isset($selected->command)) {
             foreach ($selected->command as $command) {
                 $commands[] = $this->subst((string)$command);
