@@ -163,7 +163,7 @@ class lhChatterBox extends lhAbstractChatterBox {
         }
         $rand = rand(0, count($templates)-1);
         $selected = $templates[$rand];
-        $this->setVars($selected);
+        $this->setVars($selected, false);
 
         $hints = [];
         if (isset($selected->hint)) {
@@ -188,11 +188,13 @@ class lhChatterBox extends lhAbstractChatterBox {
     }
 
 
-    private function setVars($parent_object) {
+    private function setVars($parent_object, $reset=true) {
         $this->log(__CLASS__.'->'.__FUNCTION__);
         $this->log('$parent_object='. print_r($parent_object, true), 15);
-        $this->session->set('context', '');
-        $this->session->set('tags', '');
+        if ($reset) {
+            $this->session->set('context', '');
+            $this->session->set('tags', '');
+        }
         if (!isset($parent_object->var)) {
             return;
         }
