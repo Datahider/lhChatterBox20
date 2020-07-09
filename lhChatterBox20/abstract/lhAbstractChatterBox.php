@@ -46,6 +46,16 @@ abstract class lhAbstractChatterBox extends lhSelfTestingClass implements lhChat
         } else {
             $this->csml = new lhCSML();
         }
+        
+        $alt_csml = $this->session->get('script_file', false);
+        if ($alt_csml) {
+            $this->csml->loadCsml($alt_csml);
+        }
+        
+        $alt_aiml = $this->session->get('aiml_file', false);
+        if ($alt_aiml) {
+            $this->aiml->loadAiml($alt_aiml);
+        }
     }
     
     public function setAIProvider($lhaiml_instance) {
