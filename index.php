@@ -1,7 +1,7 @@
 <?php
 
-define('LH_LIB_ROOT', '/Users/user/MyData/phplib');
-define('LH_SESSION_DIR', '/Users/user/MyData/lhsessiondata/');
+define('LH_LIB_ROOT', '/Users/drweb_000/Desktop/MyData/phplib');
+define('LH_SESSION_DIR', '/Users/drweb_000/Desktop/MyData/lhsessiondata/');
 define('LH_SESSION_LOG_SESSION', true);
 define('LH_MIN_HIT_RATIO_AIML', 80);
 define('LH_MIN_HIT_RATIO_CSML', 50);

@@ -19,7 +19,7 @@ class lhChatterBox extends lhAbstractChatterBox {
         $this->log(__CLASS__.'->'.__FUNCTION__);
         $this->log('$text='. $text, 15);
         $this->text = $text;
-        $this->session->log(lhSessionFile::$facility_chat, 'IN', $text);
+        $this->session->log(lhAbstractSession::$facility_chat, 'IN', $text);
         switch ($this->session->get('status', 'script')) {
             case 'script':
                 $answer = $this->doScript();
