@@ -31,7 +31,7 @@ class lhChatterBox extends lhAbstractChatterBox {
                 $answer = false;
         }
         if ($answer !== false) {
-            $this->session->log(lhSessionFile::$facility_chat, 'OUT', $answer['text']);
+            $this->session->log(lhAbstractSession::$facility_chat, 'OUT', $answer['text']);
         }
         return $answer;
     }
